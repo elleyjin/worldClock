@@ -8,6 +8,7 @@ body {
   padding: 0 10px;
   font-family: "Quicksand", sans-serif;
   font-weight: 300;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 h1 {
@@ -19,9 +20,6 @@ h1 {
 }
 
 span {
-  position: relative;
-  top: -58px;
-  left: 80px;
   font-size: 15pt;
   padding-left: 10px;
 }
@@ -39,9 +37,7 @@ select {
   width: 85%;
   font-size: 14pt;
   color: gray;
-  /* border: 1px solid gray; */
-  border-radius: 5px;
-  /* padding: 10px auto; */
+  border-radius: 10px;
   margin: 20px auto;
   height: 40px;
   padding: 5px;
@@ -67,20 +63,19 @@ footer {
 }
 
 .current-city {
-  font-size: 30pt;
+  font-size: 23pt;
   margin: 15px auto;
 }
 
 .current-date {
   margin: 10px;
   font-size: 14pt;
+  display: block;
 }
 
 .suffix {
-  display: block;
-  margin: 0;
-  justify-content: left;
   color: gray;
+  margin-top: 12px;
 }
 
 .icon {
@@ -93,13 +88,13 @@ footer {
 }
 
 .title {
-  margin: 28px;
+  margin: 30px;
   font-family: "Libre Baskerville", serif;
   /* font-weight: 400; */
 }
 
-.time-container {
-  height: 0;
+.local-time {
+  display: inline-flex;
   margin: 0;
 }
 
@@ -119,4 +114,8 @@ footer {
 
 .city-time {
   font-size: 28pt;
+}
+
+.time {
+  font-size: 45pt;
 }
