@@ -7,21 +7,23 @@
     <link rel="stylesheet" href="src/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;800&family=Libre+Baskerville:ital,wght@0,700;1,400&family=Libre+Franklin:wght@100;200;300;400;500;600&family=Montserrat:wght@400;500&family=Quicksand:wght@500;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;800&family=Libre+Baskerville:ital,wght@0,700;1,400&family=Libre+Franklin:wght@100;200;300;400;500;600&family=Montserrat:wght@400;500&family=Quicksand:wght@500;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone-with-data-1970-2030.min.js"></script>
   </head>
   <body>
     <div class="container">
       <h2 class="title">World Clock</h2>
       <div>
-        <h2 class="current-city">Singapore</h3>
+        <h2 class="current-city" id="main-city"></h3>
         <div class="local-time">
-          <span class="time">9:58</span>
+          <span class="time" id="current-time"></span>
             <span class="suffix">
-              <p>am</p>
-              <p> :10</p>
+              <p id="suffix"></p>
+              <p id="seconds"></p>
             </span>
           </div>
-          <p class="current-date">Friday, 20 Oct 2023</p>
+          <p class="current-date" id="date">Friday, 20 Oct 2023</p>
       </div>
       <select name="city" id="city">
         <option value="">Select city</option>
@@ -38,11 +40,11 @@
             <p>24th Oct 2023</p>
           </div>
         </div>
-        <h2 class="city-time">10:21</h2>
-        <div class="city-suffix">
-          <p>pm</p>
-          <p>UST</p>
-        </div>
+          <h2 class="city-time">10:21</h2>
+          <div class="city-suffix">
+            <p>pm</p>
+            <p>UST</p>
+      </div>
       </div>
       <div class="country-list">
         <div class="icon-container">
@@ -76,11 +78,11 @@
           <p>UST</p>
         </div>
       </div>
-      <!-- </div> -->
       <footer class="text-center">
         <a href="https://github.com/elleyjin/worldClock">Open source code</a> by
         Chan Ee Lin
       </footer>
     </div>
+    <script src="/src/index.js"></script>
   </body>
 </html>
