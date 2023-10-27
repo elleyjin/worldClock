@@ -48,6 +48,11 @@ footer {
   font-size: 13pt;
 }
 
+.title {
+  margin: 30px;
+  font-family: "Libre Baskerville", serif;
+}
+
 .country-list {
   display: flex;
   width: 90%;
@@ -58,9 +63,9 @@ footer {
   border-bottom: 1px dashed rgba(48, 48, 48, 0.1);
 }
 
-.country-list:last-child {
+/* .country-list:last-child {
   border: none;
-}
+} */
 
 .current-city {
   font-size: 22pt;
@@ -73,23 +78,18 @@ footer {
   display: block;
 }
 
+.time {
+  font-size: 45pt;
+}
+
 .suffix {
   color: gray;
   margin-top: 12px;
 }
 
-.icon {
-  width: 50px;
-}
-
 .world-clock {
   margin: 15px;
   width: 50%;
-}
-.title {
-  margin: 30px;
-  font-family: "Libre Baskerville", serif;
-  /* font-weight: 400; */
 }
 
 .local-time {
@@ -101,26 +101,26 @@ footer {
   padding: 20px;
 }
 
-.city p {
+.icon {
+  width: 50px;
+}
+
+.date {
   color: darkgray;
 }
 
-.city-suffix {
-  color: darkgray;
-  padding: 0 5px;
-  margin-right: 20px;
-  font-size: 15pt;
+.city h2 {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 20pt;
 }
 
 .city-time {
   font-size: 35pt;
 }
 
-.time {
-  font-size: 45pt;
-}
-
-.city h2 {
-  font-family: "Libre Franklin", sans-serif;
-  font-size: 20pt;
+.city-suffix {
+  color: darkgray;
+  padding: 5px;
+  margin-right: 20px;
+  font-size: 15pt;
 }

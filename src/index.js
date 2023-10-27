@@ -1,10 +1,12 @@
-function getTime(event) {
+function getLocalTime(event) {
   let localTime = moment();
   let country = localTime.tz("Asia/Singapore");
   let timeZone = country.format("h[:]mm");
   let seconds = country.format("[:]ss");
   let suffix = country.format("a");
   let date = country.format("ddd[, ]Do MMM YYYY");
+  let cityElement = document.querySelector("#main-city");
+  cityElement.innerHTML = moment.tz.guess();
 
   let timeElement = document.querySelector("#current-time");
   timeElement.innerHTML = timeZone;
@@ -17,12 +19,10 @@ function getTime(event) {
 
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = date;
-
-  let cityElement = document.querySelector("#main-city");
-  cityElement.innerHTML = moment.tz.guess(true);
 }
 
 function getCountryTime() {
+  // paris time
   let localTime = moment();
   let parisElement = document.querySelector("#paris");
   let cityDateElement = parisElement.querySelector(".date");
@@ -46,9 +46,10 @@ function getCountryTime() {
   seoulSuffixElement.innerHTML = seoulTimeZone.format("a");
 }
 
+let localTime = moment();
+
 let cityName = document.querySelector("#city");
-cityName.addEventListener("change", getTime);
+cityName.addEventListener("change", getLocalTime);
 
 getCountryTime();
-
-setInterval(getTime, 1000);
+setInterval(getLocalTime, 1000);
