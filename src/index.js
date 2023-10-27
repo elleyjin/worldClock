@@ -22,7 +22,33 @@ function getTime(event) {
   cityElement.innerHTML = moment.tz.guess(true);
 }
 
+function getCountryTime() {
+  let localTime = moment();
+  let parisElement = document.querySelector("#paris");
+  let cityDateElement = parisElement.querySelector(".date");
+  let parisTimeElement = document.querySelector("#paris-time");
+  let parisSuffixElement = document.querySelector("#paris-suffix");
+  let parisTimeZone = localTime.tz("Europe/Paris");
+
+  cityDateElement.innerHTML = parisTimeZone.format("Do MMM YYYY");
+  parisTimeElement.innerHTML = parisTimeZone.format("hh[:]mm");
+  parisSuffixElement.innerHTML = parisTimeZone.format("a");
+
+  // seoul time
+  let seoulElement = document.querySelector("#seoul");
+  let seoulTimeZone = localTime.tz("Asia/Seoul");
+  let seoulDateElement = seoulElement.querySelector(".date");
+  let seoulTimeElement = document.querySelector("#seoul-time");
+  let seoulSuffixElement = document.querySelector("#seoul-suffix");
+
+  seoulDateElement.innerHTML = seoulTimeZone.format("Do MMM YYYY");
+  seoulTimeElement.innerHTML = seoulTimeZone.format("hh[:]mm");
+  seoulSuffixElement.innerHTML = seoulTimeZone.format("a");
+}
+
 let cityName = document.querySelector("#city");
 cityName.addEventListener("change", getTime);
+
+getCountryTime();
 
 setInterval(getTime, 1000);
