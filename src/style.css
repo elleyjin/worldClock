@@ -63,10 +63,6 @@ footer {
   border-bottom: 1px dashed rgba(48, 48, 48, 0.1);
 }
 
-/* .country-list:last-child {
-  border: none;
-} */
-
 .current-city {
   font-size: 22pt;
   margin: 15px auto;
@@ -124,3 +120,11 @@ footer {
   margin-right: 20px;
   font-size: 15pt;
 }
+
+/* .dropdown:last-child {
+  border: none;
+} */
+
+/* .country-list:last-child {
+  border: none;
+} */

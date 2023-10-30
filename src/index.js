@@ -1,55 +1,88 @@
 function getLocalTime(event) {
+  let cityElement = document.querySelector("#main-city");
+  let timeElement = document.querySelector("#current-time");
+  let secondsElement = document.querySelector("#seconds");
+  let suffixElement = document.querySelector("#suffix");
+  let dateElement = document.querySelector("#date");
   let localTime = moment();
+  let guessTimeZone = moment.tz.guess();
   let country = localTime.tz("Asia/Singapore");
   let timeZone = country.format("h[:]mm");
   let seconds = country.format("[:]ss");
   let suffix = country.format("a");
   let date = country.format("ddd[, ]Do MMM YYYY");
-  let cityElement = document.querySelector("#main-city");
-  cityElement.innerHTML = moment.tz.guess();
 
-  let timeElement = document.querySelector("#current-time");
+  cityElement.innerHTML = guessTimeZone.split("/")[1];
   timeElement.innerHTML = timeZone;
-
-  let secondsElement = document.querySelector("#seconds");
   secondsElement.innerHTML = seconds;
-
-  let suffixElement = document.querySelector("#suffix");
   suffixElement.innerHTML = suffix;
-
-  let dateElement = document.querySelector("#date");
   dateElement.innerHTML = date;
 }
 
-function getCountryTime() {
-  // paris time
+function updateCity(event) {
   let localTime = moment();
-  let parisElement = document.querySelector("#paris");
-  let cityDateElement = parisElement.querySelector(".date");
-  let parisTimeElement = document.querySelector("#paris-time");
-  let parisSuffixElement = document.querySelector("#paris-suffix");
-  let parisTimeZone = localTime.tz("Europe/Paris");
+  let cityName = event.target.value.replace("_", " ").split("/")[1];
+  let cityTimeZone = localTime.tz(event.target.value);
+  let cityHtmlElement = document.querySelector("#cities");
+  let hour = cityTimeZone.format("H");
 
-  cityDateElement.innerHTML = parisTimeZone.format("Do MMM YYYY");
-  parisTimeElement.innerHTML = parisTimeZone.format("hh[:]mm");
-  parisSuffixElement.innerHTML = parisTimeZone.format("a");
-
-  // seoul time
-  let seoulElement = document.querySelector("#seoul");
-  let seoulTimeZone = localTime.tz("Asia/Seoul");
-  let seoulDateElement = seoulElement.querySelector(".date");
-  let seoulTimeElement = document.querySelector("#seoul-time");
-  let seoulSuffixElement = document.querySelector("#seoul-suffix");
-
-  seoulDateElement.innerHTML = seoulTimeZone.format("Do MMM YYYY");
-  seoulTimeElement.innerHTML = seoulTimeZone.format("hh[:]mm");
-  seoulSuffixElement.innerHTML = seoulTimeZone.format("a");
+  cityHtmlElement.innerHTML = `
+  <div class="country-list">
+    <div class="icon-container">
+      <img class="icon" src="${switchIcon(hour)}" alt="">
+    </div>
+    <div class="world-clock">
+      <div class="city">
+        <h2>${cityName}</h2>
+        <p class="date">${cityTimeZone.format("Do MMM YYYY")}</p>
+      </div>
+    </div>
+    <h2 class="city-time">${cityTimeZone.format("hh[:]mm")}</h2>
+        <p class="city-suffix">${cityTimeZone.format("a")}</p>
+  </div>
+  `;
 }
 
-let localTime = moment();
+function switchIcon(time) {
+  if (time >= 19 || time <= 6) {
+    return "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/101/756/original/5402400_dark_mode_moon_night_forecast_icon.png?1698116872";
+  } else {
+    return "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/101/755/original/9023993_sun_fill_icon.png?1698116867";
+  }
+}
 
-let cityName = document.querySelector("#city");
-cityName.addEventListener("change", getLocalTime);
+let selectCityElement = document.querySelector("#city");
+selectCityElement.addEventListener("change", updateCity);
 
-getCountryTime();
 setInterval(getLocalTime, 1000);
+
+// function getCountryTime(event) {
+//   // paris time
+//   let localTime = moment();
+//   let parisElement = document.querySelector("#paris");
+//   let cityDateElement = parisElement.querySelector(".date");
+//   let parisTimeElement = document.querySelector("#paris-time");
+//   let parisSuffixElement = document.querySelector("#paris-suffix");
+//   let parisTimeZone = localTime.tz("Europe/Paris");
+
+//   cityDateElement.innerHTML = parisTimeZone.format("Do MMM YYYY");
+//   parisTimeElement.innerHTML = parisTimeZone.format("hh[:]mm");
+//   parisSuffixElement.innerHTML = parisTimeZone.format("a");
+
+//   // seoul time
+//   let seoulElement = document.querySelector("#seoul");
+//   let seoulTimeZone = localTime.tz("Asia/Seoul");
+//   let seoulDateElement = seoulElement.querySelector(".date");
+//   let seoulTimeElement = document.querySelector("#seoul-time");
+//   let seoulSuffixElement = document.querySelector("#seoul-suffix");
+
+//   seoulDateElement.innerHTML = seoulTimeZone.format("Do MMM YYYY");
+//   seoulTimeElement.innerHTML = seoulTimeZone.format("hh[:]mm");
+//   seoulSuffixElement.innerHTML = seoulTimeZone.format("a");
+
+//   let cityElement = document.querySelector(event.target.value);
+
+//   let hour = localTime.tz(event.target.value).format("HH");
+
+//   changeIcon(hour);
+// }
