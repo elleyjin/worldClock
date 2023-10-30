@@ -6,14 +6,14 @@ function getLocalTime(event) {
   let dateElement = document.querySelector("#date");
   let localTime = moment();
   let guessTimeZone = moment.tz.guess();
-  let country = localTime.tz("Asia/Singapore");
-  let timeZone = country.format("h[:]mm");
+  let country = localTime.tz(guessTimeZone);
+  let time = country.format("h[:]mm");
   let seconds = country.format("[:]ss");
   let suffix = country.format("a");
   let date = country.format("ddd[, ]Do MMM YYYY");
 
   cityElement.innerHTML = guessTimeZone.split("/")[1];
-  timeElement.innerHTML = timeZone;
+  timeElement.innerHTML = time;
   secondsElement.innerHTML = seconds;
   suffixElement.innerHTML = suffix;
   dateElement.innerHTML = date;
@@ -26,7 +26,7 @@ function updateCity(event) {
   let cityHtmlElement = document.querySelector("#cities");
   let hour = cityTimeZone.format("H");
 
-  cityHtmlElement.innerHTML = `
+  cityHtmlElement.innerHTML += ` 
   <div class="country-list">
     <div class="icon-container">
       <img class="icon" src="${switchIcon(hour)}" alt="">
@@ -55,34 +55,3 @@ let selectCityElement = document.querySelector("#city");
 selectCityElement.addEventListener("change", updateCity);
 
 setInterval(getLocalTime, 1000);
-
-// function getCountryTime(event) {
-//   // paris time
-//   let localTime = moment();
-//   let parisElement = document.querySelector("#paris");
-//   let cityDateElement = parisElement.querySelector(".date");
-//   let parisTimeElement = document.querySelector("#paris-time");
-//   let parisSuffixElement = document.querySelector("#paris-suffix");
-//   let parisTimeZone = localTime.tz("Europe/Paris");
-
-//   cityDateElement.innerHTML = parisTimeZone.format("Do MMM YYYY");
-//   parisTimeElement.innerHTML = parisTimeZone.format("hh[:]mm");
-//   parisSuffixElement.innerHTML = parisTimeZone.format("a");
-
-//   // seoul time
-//   let seoulElement = document.querySelector("#seoul");
-//   let seoulTimeZone = localTime.tz("Asia/Seoul");
-//   let seoulDateElement = seoulElement.querySelector(".date");
-//   let seoulTimeElement = document.querySelector("#seoul-time");
-//   let seoulSuffixElement = document.querySelector("#seoul-suffix");
-
-//   seoulDateElement.innerHTML = seoulTimeZone.format("Do MMM YYYY");
-//   seoulTimeElement.innerHTML = seoulTimeZone.format("hh[:]mm");
-//   seoulSuffixElement.innerHTML = seoulTimeZone.format("a");
-
-//   let cityElement = document.querySelector(event.target.value);
-
-//   let hour = localTime.tz(event.target.value).format("HH");
-
-//   changeIcon(hour);
-// }
